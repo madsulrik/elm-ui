@@ -2227,16 +2227,17 @@ renderFocusStyle focus =
                 (\shadow ->
                     Property "box-shadow"
                         (formatBoxShadow
-                            { color = shadow.color
-                            , offset =
-                                shadow.offset
-                                    |> Tuple.mapFirst toFloat
-                                    |> Tuple.mapSecond toFloat
-                            , inset = False
-                            , blur =
-                                toFloat shadow.blur
-                            , size =
-                                toFloat shadow.size
+                            { inset = False
+                            , shadows =
+                                [ { offset =
+                                        shadow.offset
+                                            |> Tuple.mapFirst toFloat
+                                            |> Tuple.mapSecond toFloat
+                                  , blur = toFloat shadow.blur
+                                  , size = toFloat shadow.size
+                                  , color = shadow.color
+                                  }
+                                ]
                             }
                         )
                 )
